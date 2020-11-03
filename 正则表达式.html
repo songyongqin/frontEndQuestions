@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+
+
+
+
+    let str = '1000002322'
+    // let reg = /(?=(\B)(\d{3})*$)/g
+    // let reg = /(?=(\S\d{3})*$)/g
+    // console.log((str || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,'));
+    // console.log(str.replace(reg,','))
+    let str2 = 532212355
+    // let reg2 = /(?=(\d{3}))/g
+    let reg2 = /(\d{3})+$/g
+    // console.log(str2.replace(reg2,','))
+    reg2.exec(str2)
+    console.log(reg2.lastIndex)
+    reg2.exec(str2)
+    console.log(reg2.lastIndex)
+    // console.log(str2.match(reg2))
+    // console.log(str2.replace(reg2, '$1,'))
+    // var string = "12345678 123456789",
+    // regex = /(?!\b)(?=(\d{3})+\b)/g;
+    // var result = string.replace(regex, ',')
+    // console.log(result);
+    // let str2 = 'the-first-name'
+    // let reg2 = /-(\w)/g
+    // console.log(str2.replace(reg2,($,$1) => {
+    //   console.log($)
+    //   console.log($1)
+    //   return $1.toUpperCase();
+    // }))
+  </script>
+</body>
+</html>

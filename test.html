@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./test.css" />
+  <script src="./test.js"></script>
+  <style>
+    .test{
+      background: url('./1.jpg') no-repeat;
+      width: 100%;
+      height: 200px;
+      background-size: auto;
+
+    }
+  </style>
+</head>
+<body>
+  <div class="test"></div>
+
+<script>
+
+function debounce(fn, wait) {    
+  var timeout = null;    
+  return function() { 
+    if(timeout !== null)   clearTimeout(timeout);  
+    timeout = setTimeout(fn, wait);    
+  }
+}
+// 处理函数
+function handle() {    
+    console.log(Math.random()); 
+}
+// 滚动事件
+window.addEventListener('scroll', debounce(handle, 1000));
+
+
+</script>
+</body>
+</html>

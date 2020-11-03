@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let obj = {
+      name:'nick',
+      age:38,
+      cars:['bmw','maria'],
+      wife:{
+        name:'lily',
+        age:35,
+        son:{
+          name:'john',
+          age:17
+        }
+
+      }
+    }
+
+    let obj2 = {}
+
+    function deepClone(origin, target) {
+
+      let toStr = Object.prototype.toString
+      let arrStr = "[object Array]"
+      for(var value in origin) {
+        if(origin.hasOwnProperty(value)) {
+          if( typeof origin[value] === "object") {
+            //对象分为数组 对象类型 辨别的方法有：1.instanceOf  2.toString 3.constructor 
+            console.log(toStr.call(origin[value]))
+            if(toStr.call(origin[value]) === arrStr) {
+              target[value] = []
+              deepClone(origin[value],target[value])
+            }else {
+              target[value] = {}
+              deepClone(origin[value],target[value])
+            }
+
+          } else {
+            target[value] = origin[value]
+          }
+        }
+      }
+
+      return target
+    }
+
+    deepClone(obj,obj2)
+
+  </script>
+</body>
+</html>

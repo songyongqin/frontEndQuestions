@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let obj = {
+      name:'jack',
+      age: 35,
+      card:['bmw','mariz'],
+      wife:{
+        name:'lily',
+        age:32,
+        son:{
+          name:'john',
+          age:12
+        }
+      }
+    }
+    let obj1 = {}
+
+    function deepClone(origin,desc) {
+
+      desc = desc || {}
+      let toStr = Object.prototype.toString
+      let arrStr = "[object Array]"
+      for(var prop in origin) {
+        if(origin.hasOwnProperty(prop)) {
+          if (typeof(origin[prop]) === "object") {
+            //引用类型 判断是数组 或者 对象
+            if(toStr.call(origin[prop]) === arrStr) {
+              desc[prop] = []
+            } else {
+              desc[prop] = {}
+            }
+            deepClone(origin[prop],desc[prop])
+          } else {
+            desc[prop] = origin[prop]
+          }
+        }
+
+      }
+      return desc
+    }
+
+
+
+
+  </script>
+</body>
+</html>

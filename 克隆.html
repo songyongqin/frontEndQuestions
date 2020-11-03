@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let obj = {
+      a:1,
+      b:"jack",
+      c:[1,2,3],
+      d:{
+        name:"john",
+        age:20
+      },
+      e:function(){
+
+      },
+      f:true
+    }
+
+    let obj2 = {}
+
+    for(var key in obj) {
+      // typeof key
+      console.log(typeof obj[key])
+      if(typeof obj[key] === "object") {
+        if(obj[key] instanceof Array) {
+          obj2[key] = obj[key].concat([])
+        }
+
+      } else {
+        obj2[key] = obj[key]
+      }
+    }
+    obj2.c.push(5)
+    console.log(obj,obj2)
+
+
+  </script>
+</body>
+</html>

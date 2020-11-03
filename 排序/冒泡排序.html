@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr = [3,2,5,2,1,9,8]
+    function bubbleSort(arr) {
+      for(let i = 1; i < arr.length; i++) {
+        for(let j = 0; j < arr.length - i ; j++) {
+          if(arr[j] > arr[j+1]) {
+            let temp = arr[j]
+            arr[j] = arr[j+1]
+            arr[j+1] = temp
+          }
+        }
+      }
+    }
+    bubbleSort(arr)
+    console.log(arr)
+
+  </script>
+</body>
+</html>
