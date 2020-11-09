@@ -7,46 +7,43 @@
 </head>
 <body>
   <div>
-    <!-- <input id="inp" /> -->
-    <!-- <button id="inp" >test</button> -->
-    <button onclick="test()" >test</button>
   </div>
   <script>
-
-    
-
-    // var array = ['a', 'b'];
-    // var elements = [0, 1, 2];
-    // array.push.apply(array, elements);
-    // console.info(array); // ["a", "b", 0, 1, 2]
-
     // 什么是防抖和节流？有什么区别？如何实现？
 
-    /**
-     * 1.防抖：触发高频事件后，n秒内函数只会执行一次，如果在n秒内事件再次触发，则重新计算时间
-     */
-    function debounce(fn) {
-      console.log('test')
-      let timeout = null; // 创建一个标记用来存放定时器的返回值
-      return function () {
-        clearTimeout(timeout); // 每当用户输入的时候把前一个 setTimeout clear 掉
-        timeout = setTimeout(() => { // 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数
-          // console.log(this,arguments)
-          fn.apply(this, arguments);
-        }, 500);
-      };
-    }
-    function sayHi() {
-      console.log('防抖成功');
+    //防抖：当持续触发事件时，一定事件内没有再触发事件，事件处理函数才会执行一次，如果设定时间到来之前，又一次触发了事件，就重新开始计算延时。
+    function debounce(fn,delay) {
+      let time 
+      return function() {
+        let context = this;
+        let args = arguments;
+        if(time) {
+          clearTimeout(time)
+        }
+        time = setTimeout(function(){
+          fn.apply(context,args)
+        },delay);
+      }
     }
 
-    let test = debounce(sayHi)
-
-    // var inp = document.getElementById('inp');
-    // inp.addEventListener('click', debounce(sayHi)); // 防抖    
-
-    //我可以不给它加inp.addEventListener  而是改成在button上面加一个点击事件<button onclick="debounce" >test</button>,如果用这种实现的话，这个防抖要怎样写
-
+    //节流：当持续触发事件时，保证一定时间段内只调用一次事件处理函数
+    function throttle(fn,delay) {
+      let pre
+      return function() {
+        var context = this;
+        var args = arguments;
+        if(!pre) {
+          fn.apply(context,args)
+          pre = Date.now()
+          return
+        }
+        let now = Date.now()
+        if(now - pre > delay) {
+          fn.apply(context,args)
+          pre = now
+        }
+      }
+    }
 
 
 
