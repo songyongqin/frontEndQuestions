@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+<script>
+  let arr = [3,12,0,11,5,6,15,5,38,7]
+  function radixSort(arr) {
+    let tongs = []
+    let tongsIndex = []
+    let max = arr[0]
+    for(let i = 1; i < arr.length; i++) {
+      if(arr[i] > max) {
+        max = arr[i]
+      }
+    }
+    let length = max.toString().length
+
+    for(let i = 0, n = 1; i < length; i++, n*=10) {
+      //初始化桶子和桶子指针
+      for(let i = 0; i < 10; i++) {
+        tongs[i] = []
+        tongsIndex[i] = 0
+      }
+
+      //将数据放入桶子,对应每个桶子的游标加一
+      for(let i = 0; i < arr.length; i++) {
+        let num = Math.floor((arr[i] / n) % 10)
+        tongs[num].push(arr[i])
+        tongsIndex[num]++
+      }
+
+      let t = 0
+      //取出每个桶中数据，下标由小到大
+      for(let i = 0; i < 10; i++) {
+        //取每个桶中数据
+        while(tongsIndex[i] !== 0) {
+          arr[t] = tongs[i].shift()
+          t++
+          tongsIndex[i]--
+        }
+      }
+    }
+
+  }
+  radixSort(arr)
+  console.log(arr)
+</script>
+
+</body>
+</html>

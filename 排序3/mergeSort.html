@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+<script>
+  let arr = [3,2,0,1,5,6,5,9,8,7]
+  let temp = []
+
+  function merge(arr, left, mid, right, temp) {
+    let l = left
+    let nextL = mid +1
+    let num = 0
+    while(l <= mid && nextL <= right ) {
+      if(arr[l] < arr[nextL]) {
+        temp[num]= arr[l]
+        l++
+        num++
+      } else {
+        temp[num] = arr[nextL]
+        nextL++
+        num++
+      }
+    }
+    while(l <= mid) {
+      temp[num]= arr[l]
+      l++
+      num++
+    }
+    while(nextL <= right) {
+      temp[num] = arr[nextL]
+      nextL++
+      num++
+    }
+
+    num = 0
+    let leftIndex = left
+    while(leftIndex <= right) {
+      arr[leftIndex] = temp[num]
+      leftIndex++
+      num++
+    }
+
+  }
+
+  function mergeSort(arr, left, right, temp) {
+    if(left < right) {
+      let mid = Math.floor((left + right) /2)
+      mergeSort(arr,left,mid, temp)
+      mergeSort(arr,mid + 1, right, temp)
+      merge(arr,left,mid,right,temp)
+    }
+  }
+  mergeSort(arr, 0, arr.length -1, temp)
+  console.log(arr)
+</script>
+
+</body>
+</html>

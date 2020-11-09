@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr = [3,2,0,1,5,6,5,9,8,7]
+    function insertSort(arr) {
+      for(let i = 1; i < arr.length; i++) {
+        let j = i
+        let insertValue = arr[j]
+        let insertIndex = j-1
+        while(insertIndex >= 0 && insertValue < arr[insertIndex]) {
+          arr[insertIndex + 1] = arr[insertIndex]
+          insertIndex--
+        }
+        arr[insertIndex+1] = insertValue
+      }
+    }
+    insertSort(arr)
+    console.log(arr)
+  </script>
+</body>
+</html>

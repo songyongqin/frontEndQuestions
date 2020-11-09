@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+<script>
+  let arr = [3,2,0,1,5,6,5,9,8,7]
+  function quickSort(arr, left, right) {
+    let l = left 
+    let r = right
+    let mid = Math.floor((left + right) / 2)
+    let pivot = arr[mid]
+    while(l < r) {
+      while(arr[l] < pivot) {
+        l++
+      }
+
+      while(arr[r] > pivot) {
+        r--
+      }
+
+      if(l >= r) {
+        break
+      }
+
+      let temp = arr[l]
+      arr[l] = arr[r]
+      arr[r] = temp
+
+      if(arr[l] == pivot) {
+        r--
+      }
+      if(arr[r] == pivot) {
+        l++
+      }
+    }
+
+    if(l == r) {
+      l++
+      r--
+    }
+
+    if(l < right) {
+      quickSort(arr,l,right)
+    }
+    if(r > left) {
+      quickSort(arr,left,r)
+    }
+
+
+
+  }
+  quickSort(arr, 0, arr.length-1)
+  console.log(arr)
+</script>
+
+</body>
+</html>

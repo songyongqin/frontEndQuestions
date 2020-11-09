@@ -7,7 +7,7 @@
 </head>
 <body>
   <script>
-    let arr = [9,2,5,3,4,6,8,1,7]
+    let arr = [2,0,1,3,6,5,8,9,7]
     let temp = []
 
     function merge(arr,left,mid,right,temp) {
@@ -17,25 +17,25 @@
       while(l <= mid && nextL <= right) {
         if(arr[l] < arr[nextL]) {
           temp[num] = arr[l]
-          num++
           l++
-        } else {
-          temp[num] = arr[nextL] 
           num++
+        } else {
+          temp[num] = arr[nextL]
           nextL++
+          num++
         }
       }
 
       while(l <= mid) {
         temp[num] = arr[l]
-        num++
         l++
+        num++
       }
 
       while(nextL <= right) {
-        temp[num] = arr[nextL] 
-        num++
+        temp[num] = arr[nextL]
         nextL++
+        num++
       }
 
       num = 0
@@ -50,14 +50,17 @@
 
     function mergeSort(arr,left,right,temp) {
       if(left < right) {
-        let mid = Math.floor((left + right) / 2)
-        mergeSort(arr, left, mid, temp)
-        mergeSort(arr, mid + 1, right, temp)
+        let mid = Math.floor((left + right) /2)
+        mergeSort(arr,left,mid,temp)
+        mergeSort(arr,mid+1,right,temp)
         merge(arr,left,mid,right,temp)
       }
+      
     }
-    mergeSort(arr,0,arr.length - 1, temp)
+    mergeSort(arr,0,arr.length-1,temp)
     console.log(arr)
+
+
   </script>
 </body>
 </html>
