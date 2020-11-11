@@ -11,20 +11,26 @@
   <script>
     // 什么是防抖和节流？有什么区别？如何实现？
 
-    //防抖：当持续触发事件时，一定事件内没有再触发事件，事件处理函数才会执行一次，如果设定时间到来之前，又一次触发了事件，就重新开始计算延时。
+    // 防抖：当持续触发事件时，一定事件内没有再触发事件，事件处理函数才会执行一次，如果设定时间到来之前，又一次触发了事件，就重新开始计算延时。
+    this.name = 'window'
     function debounce(fn,delay) {
+      this.name = 'debounce'
       let time 
       return function() {
-        let context = this;
-        let args = arguments;
+        let context = this
         if(time) {
           clearTimeout(time)
         }
-        time = setTimeout(function(){
-          fn.apply(context,args)
-        },delay);
+        time = setTimeout(()=>fn.apply(this,arguments),delay);
       }
     }
+    function sayHi(a) {
+      // this.name = "sayHi"
+      console.log('防抖成功'+ a + this.name)
+    }
+    window.addEventListener('resize', debounce(()=> {
+      sayHi(1)
+    },1000),1000)
 
     //节流：当持续触发事件时，保证一定时间段内只调用一次事件处理函数
     function throttle(fn,delay) {
