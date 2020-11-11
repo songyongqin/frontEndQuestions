@@ -47,7 +47,21 @@
       //       return arguments.callee;
       //   }
     }
-    console.log(add(1,2,3)(1)(2)(3)(4,5,6)(7,8)());//42
+    // console.log(add(1,2,3)(1)(2)(3)(4,5,6)(7,8)());//42
+
+    function add2() {
+      let arr = [...arguments]
+      function _add() {
+        if(arguments.length === 0) {
+          return arr.reduce((a,b)=> a + b, 10)
+        } else {
+          arr = [...arr,...arguments]
+          return _add
+        }
+      }
+      return _add
+    }
+    console.log(add2(1,2,3)(1)(2)(3)(4,5,6)(7,8)())
 
   </script>
 </body>
