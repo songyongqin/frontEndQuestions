@@ -1,0 +1,6 @@
+.twoimage{
+  width:84px;
+  height: 47px;
+  background-image: url(images/cssjlt.png);
+  background-position: -425px -250px;
+}

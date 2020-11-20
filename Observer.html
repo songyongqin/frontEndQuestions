@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Observer {
+      obj ={
+        'click':['call1','call2'],
+        'mouseOver':['call1','call2']
+      }
+      
+      on(name,callback){
+        //如果是click => 在原对象对应事件队列上加入， 如果之前不存在，新建例如mouseEnter事件 mouseEnter:[callback]
+        let values = obj[name] || []
+        values.push(callback)
+        obj[name] = values
+      }
+      emit(name,value) {
+        if(obj[name]) {
+          obj[name].forEach((fn) => {
+            fn(value)
+          })
+        }
+      }
+      remove(type,fn){
+        if(obj[type]) {
+          let index = obj[type].indexOf(fn)
+          if(index !== -1) {
+            obj[type].splice(index,1)
+          }
+        }
+      }
+    }
+    let obser = new Observer()
+    console.log(obser.obj)
+  </script>
+</body>
+</html>
