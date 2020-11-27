@@ -53,7 +53,7 @@
       let arr = [...arguments]
       function _add() {
         if(arguments.length === 0) {
-          return arr.reduce((a,b)=> a + b, 10)
+          return arr.reduce((a,b)=> a + b)
         } else {
           arr = [...arr,...arguments]
           return _add

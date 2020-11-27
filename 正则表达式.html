@@ -8,24 +8,21 @@
 <body>
   <script>
 
-    let reg = /^[0-9a-zA-Z._\\\-@]{1,18}$/
-    
-    console.log(reg.test("\\"))
-
-
-    let str = '1000002322'
+    // let reg = /^[0-9a-zA-Z._\\\-@]{1,18}$/
+    // console.log(reg.test("\\"))
+    // let str = '1000002322'
     // let reg = /(?=(\B)(\d{3})*$)/g
     // let reg = /(?=(\S\d{3})*$)/g
     // console.log((str || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,'));
     // console.log(str.replace(reg,','))
-    let str2 = 532212355
+    // let str2 = 532212355
     // let reg2 = /(?=(\d{3}))/g
-    let reg2 = /(\d{3})+$/g
+    // let reg2 = /(\d{3})+$/g
     // console.log(str2.replace(reg2,','))
-    reg2.exec(str2)
-    console.log(reg2.lastIndex)
-    reg2.exec(str2)
-    console.log(reg2.lastIndex)
+    // reg2.exec(str2)
+    // console.log(reg2.lastIndex)
+    // reg2.exec(str2)
+    // console.log(reg2.lastIndex)
     // console.log(str2.match(reg2))
     // console.log(str2.replace(reg2, '$1,'))
     // var string = "12345678 123456789",
@@ -39,6 +36,15 @@
     //   console.log($1)
     //   return $1.toUpperCase();
     // }))
+    // 1.如何将浮点数点左边的数每三位添加一个逗号，如 12000000.11 转化为 『12,000,000.11』?
+    // let str = '112000000.11'
+    // let reg = /(?!^)(?=(\d{3})+\.)/g
+    // console.log(str.replace(reg,','))
+    //2密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
+    // var pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
+    // console.log("=="+pPattern.test("1caiAbaojian#"));
+    let reg = /^(?!-)(\d)/
+    console.log(reg.test('-12'))
   </script>
 </body>
 </html>
