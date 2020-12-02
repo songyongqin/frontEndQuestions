@@ -20,25 +20,19 @@
   <div class="test"></div>
 
 <script>
-function flatten(arr) {
-  const result = [];
+var value = 1;
 
-  arr.forEach((i) => {
-    if (Array.isArray(i))
-      //[4, 5, [6, 7], 8, 9]
-      result.push(...flatten(i));
-    else
-      result.push(i);
-  })
-  
-  return result;
+function foo() {
+    console.log(value);
 }
 
-// Usage
-const problem = [1, 2, 3, [4, 5, [6, 7], 8, 9]];
+function bar() {
+    var value = 2;
+    // this.foo();
+    foo.call(this)
+}
 
-// [1, 2, 3, 4, 5, 6, 7, 8, 9]
-console.log(flatten(problem))
+bar();
 </script>
 </body>
 </html>

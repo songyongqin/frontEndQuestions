@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    
+    function Otaku (name, age) {
+      
+      this.age = age;
+
+      // return {
+      //   name: name,
+      //   habit: 'Games'
+      // }
+      return "123"
+    }
+    Otaku.prototype.length = 20
+
+    // var person = new Otaku('Kevin', '18');
+
+    // console.log(person)
+    // console.log(person.name) // Kevin
+    // console.log(person.habit) // Games
+    // console.log(person.strength) // undefined
+    // console.log(person.age) // undefined
+
+    function objectFactory() {
+
+      
+
+      var obj = new Object(),
+
+      Constructor = [].shift.call(arguments);
+
+      obj.__proto__ = Constructor.prototype;
+
+      Constructor.apply(obj, arguments);
+
+      return obj;
+
+    };
+
+    let obj = objectFactory(Otaku,'jack',16)
+    console.log(obj)
+
+
+
+
+
+
+
+
+      // 第二版的代码
+      // function objectFactory() {
+
+      //   var obj = new Object(),
+
+      //   Constructor = [].shift.call(arguments);
+
+      //   obj.__proto__ = Constructor.prototype;
+
+      //   var ret = Constructor.apply(obj, arguments);
+
+      //   return typeof ret === 'object' ? ret : obj;
+
+      // };
+
+
+
+
+    
+
+  </script>
+</body>
+</html>
