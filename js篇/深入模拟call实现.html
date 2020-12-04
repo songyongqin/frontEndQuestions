@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // var foo = {
+    //   value: 1
+    // }
+    // function bar() {
+    //   console.log(this.value)
+    // }
+    // bar.call(foo)
+
+// 类似于
+
+    // var foo = {
+    //   value: 1,
+    //   bar: function() {
+    //     console.log(this.vlaue)
+    //   }
+    // }
+
+    // foo.bar()
+//模拟步骤：
+//1.将函数设为对象的属性
+//2.执行该函数
+//3.删除该函数
+
+//模拟实现一个call2函数 第一版
+
+Function.prototype.call2 = function(context) {
+  var context = context || window
+  context.fn = this;
+  let args = []
+  for(let i = 1; i < arguments.length; i++) {
+    args.push(arguments[i])
+  }
+  // args.join(',')
+  // console.log(args.join(','))
+  // context.fn('jack',18);
+  // console.log(args.join(','))
+  
+  // context.fn('jack',18);
+  // args = ['jack',18]
+  let res = context.fn(...args);
+  
+  // context.fn(args.toString());
+  
+  delete context.fn;
+  return res 
+}
+
+var foo = {
+  value: 1
+};
+
+function bar(name,age) {
+  console.log(name, age, this.value)
+  return {
+    age:15,
+    name:'jj'
+  }
+}
+
+
+console.log(bar.call2(foo,'jack',18))
+
+
+// Function.prototype.call2 = function(context) {
+//     // 首先要获取调用call的函数，用this可以获取
+//     context.fn = this;
+//     context.fn();
+//     delete context.fn;
+// }
+
+// // 测试一下
+// var foo = {
+//     value: 1
+// };
+
+// function bar() {
+//     console.log(this.value);
+// }
+
+// bar.call2(foo); // 1
+
+  </script>
+</body>
+</html>

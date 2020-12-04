@@ -4,34 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="./test.css" />
-  <script src="./test.js"></script>
-  <style>
-    .test{
-      background: url('./1.jpg') no-repeat;
-      width: 100%;
-      height: 200px;
-      background-size: auto;
 
-    }
-  </style>
 </head>
 <body>
   <div class="test"></div>
 
 <script>
-var value = 1;
-
+var fn = null;
 function foo() {
-    console.log(value);
+    var a = 2;
+    function innnerFoo() { 
+        console.log(c); 
+        console.log(a);
+    }
+    fn = innnerFoo; 
 }
 
 function bar() {
-    var value = 2;
-    // this.foo();
-    foo.call(this)
+    var c = 100;
+    fn(); 
 }
 
+foo();
 bar();
 </script>
 </body>
