@@ -40,17 +40,10 @@ Function.prototype.call2 = function(context) {
   for(let i = 1; i < arguments.length; i++) {
     args.push(arguments[i])
   }
-  // args.join(',')
-  // console.log(args.join(','))
-  // context.fn('jack',18);
-  // console.log(args.join(','))
-  
   // context.fn('jack',18);
   // args = ['jack',18]
   let res = context.fn(...args);
-  
-  // context.fn(args.toString());
-  
+
   delete context.fn;
   return res 
 }

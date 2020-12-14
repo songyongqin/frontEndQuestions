@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  //bind 修改this指针
+
+  var hobby = "climb"
+
+  let bar = {
+    value: 1,
+    hobby: 'run'
+  }
+  function sayBar(age,color) {
+    console.log(this.value)
+    console.log(hobby)
+    console.log(age)
+    console.log(color)
+    console.log(this.name)
+    return "aa"
+  }
+
+  sayBar.prototype.name = 'jack'
+
+  let fun = sayBar.bind(bar,14)
+  fun('red')
+
+
+  Function.prototype.bind2 = function(context) {
+    var self = this
+    let arr = Array.prototype.splice.call(arguments,1)
+
+    let fBound = function () {
+      let args = Array.prototype.splice.call(arguments,0)
+      return self.apply(this instanceof fBound ? this : context,[...arr,...args])
+    }
+    function fn() {}
+    fn.prototype = self.prototype
+    fBound.prototype = new fn()
+  }
+console.log('bind2------')
+  
+  let fun2 = sayBar.bind2(bar,14)
+  let obj = new fun2('red')
+
+</script>
+</html>

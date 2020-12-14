@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+Person.prototype.cookie = "eggs"
+function Person(name,age){
+  this.hobby = 'climb'
+  this.name = name
+  this.age = age
+}
+
+let per = new Person('john',18)
+console.log(per)
+
+//new是关键字，模拟实现 myNew(Person,'john',18)
+
+console.log("-----")
+
+function myNew() {
+  let obj = Object.create(null)
+  let Constructor = [].shift.call(arguments)
+  obj.__proto__ = Constructor.prototype
+  let result = Constructor.call(obj,...arguments)
+  return typeof result === "object" ? result : obj
+}
+
+
+let per2 = myNew(Person,'john',18)
+console.log(per2)
+
+
+</script>
+
+</html>

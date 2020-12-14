@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+
+  var value = 11
+
+  let bar = {
+    value: 1
+  }
+
+  sayBar.prototype.hobby = "climb"
+
+  function sayBar(name,age) {
+    console.log(name)
+    console.log(age)
+    console.log(this.value)
+    console.log(this.hobby)
+    return {a:11,b:22}
+  }
+
+  Function.prototype.bind2 = function (context) {
+    let self = this || window
+    let arg = [].splice.call(arguments,1)
+
+    let fBound = function() {
+      let arg2 = [].splice.call(arguments,0)
+      return self.apply( this instanceof fBound ? this : context,[...arg,...arg2])
+    }
+    // fBound.prototype = self.prototype
+    function fn() {}
+    fn.prototype = self.prototype
+    fBound.prototype = new fn()
+    return fBound
+  }
+
+  let fn2 = sayBar.bind2(bar,'jack')
+  console.log(new fn2(18))
+
+
+  let fn = sayBar.bind(null,'jack')
+  console.log(new fn(18))
+
+  // let bar = {
+  //   value: 1,
+  //   sayBar:function() {
+  //     console.log(this.value)
+  //   }
+  // }
+
+
+
+</script>
+</html>

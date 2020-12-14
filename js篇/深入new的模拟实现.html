@@ -20,32 +20,27 @@
     }
     Otaku.prototype.length = 20
 
-    // var person = new Otaku('Kevin', '18');
+    var person = new Otaku('Kevin', '18');
 
-    // console.log(person)
     // console.log(person.name) // Kevin
     // console.log(person.habit) // Games
     // console.log(person.strength) // undefined
     // console.log(person.age) // undefined
 
-    function objectFactory() {
+    // function objectFactory() {
+    //   var obj = new Object();
+    //   Constructor = [].shift.call(arguments);
 
-      
+    //   obj.__proto__ = Constructor.prototype;
 
-      var obj = new Object(),
+    //   Constructor.apply(obj, arguments);
 
-      Constructor = [].shift.call(arguments);
+    //   return obj;
 
-      obj.__proto__ = Constructor.prototype;
+    // };
 
-      Constructor.apply(obj, arguments);
-
-      return obj;
-
-    };
-
-    let obj = objectFactory(Otaku,'jack',16)
-    console.log(obj)
+    // let obj = objectFactory(Otaku,'jack',16)
+    // console.log(obj)
 
 
 
@@ -55,19 +50,22 @@
 
 
       // 第二版的代码
-      // function objectFactory() {
+      function objectFactory() {
 
-      //   var obj = new Object(),
+        var obj = new Object(),
 
-      //   Constructor = [].shift.call(arguments);
+        Constructor = [].shift.call(arguments);
 
-      //   obj.__proto__ = Constructor.prototype;
+        obj.__proto__ = Constructor.prototype;
 
-      //   var ret = Constructor.apply(obj, arguments);
+        var ret = Constructor.apply(obj, arguments);
 
-      //   return typeof ret === 'object' ? ret : obj;
+        return typeof ret === 'object' ? ret : obj;
 
-      // };
+      };
+
+      let obj = objectFactory(Otaku,'jack',16)
+      console.log(obj)
 
 
 
