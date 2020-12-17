@@ -9,17 +9,163 @@
   
 </body>
 <script>
-  //工厂模式
+  //1.工厂模式
   function createPerson(name) {
     var o = new Object();
     o.name = name;
     o.getName = function () {
       console.log(this.name);
     };
-
     return o;
   }
+  // var person1 = createPerson('kevin');
+  //缺点：对象无法识别，因为所有的实例指向一个原型
 
-var person1 = createPerson('kevin');
+
+  //2.构造函数模式
+  function Person(name) {
+    this.name = name;
+    this.getName = function () {
+        console.log(this.name);
+    };
+  }
+  // var person1 = new Person('kevin');
+  // 优点：实例可以识别为一个特定的类型
+  // 缺点：每次创建实例时，每个方法都要被创建一次
+
+
+
+  //2.1构造函数模式优化
+  // function Person(name){
+  //   this.name = name
+  //   this.getName = getName
+  // }
+  // function getName() {
+  //   console.log(this.name)
+  // }
+
+
+  //3原型模式
+  // function Person(){
+
+  // }
+  // Person.prototype.name = "kevin"
+  // Person.prototype.getName = function() {
+  //   console.log(this.name)
+  // }
+  // var person = new Person()
+  //优点：方法不会被新建
+  //缺点：1.所有的属性，方法共享 2.不能初始化参数
+
+  //3.1原型模式优化
+  // function Person(){
+  // }
+  // Person.prototype={
+  //   name: "kevin",
+  //   getName: function() {
+  //     console.log(this.name)
+  //   }
+  // }
+  // var person = new Person()
+  //优点：封装性好了一点
+  //缺点：重写了原型，丢失了constructor方法
+
+
+  //3.2原型模式优化
+  // function Person(){
+  // }
+  // Person.prototype={
+  //   constructor: Person,
+  //   name: "kevin",
+  //   getName: function() {
+  //     console.log(this.name)
+  //   }
+  // }
+  // var person = new Person()
+  // console.log(person)
+  //优点：函数可以通过constructor属性找到所属构造函数
+  //缺点：原型模式存在的缺点仍然存在
+
+
+  //4.组合模式，将构造模式与原型模式组合
+  function Person(name) {
+    this.name = name
+  }
+  Person.prototype ={
+    constructor: Person,
+    getName:function() {
+      console.log(this.name)
+    }
+  }
+  var person = new Person()
+  console.log(person)
+  person.getName()
+  //优点：该共享的共享，该私有的私有，使用最广泛的方式
+  //缺点：有的人希望全部封装在一起，即更好的封装性
+
+
+
+
+
+  // var person = new Person('kevin')
+  //优点：解决了每个方法要重新创建的问题
+
+  // function Person(name) {
+  //   this.name = name;
+  //   if (typeof this.getName != "function") {
+  //       Person.prototype = {
+  //           constructor: Person,
+  //           getName: function () {
+  //               console.log(this.name);
+  //           }
+  //       }
+  //   }
+  // }
+
+// var person1 = new Person('kevin');
+// var person2 = new Person('daisy');
+
+// 报错 并没有该方法
+// person1.getName();
+
+// 注释掉上面的代码，这句是可以执行的。
+// person2.getName();
+
+
+// function Person(name) {
+
+// }
+
+// Person.prototype = {
+//     constructor: Person,
+//     name: 'kevin',
+//     getName: function () {
+//         console.log(this.name);
+//     }
+// };
+
+// var person1 = new Person('king');
+// person1.getName()
+
+// 5.2 稳妥构造函数模式
+function person(name){
+  var o = new Object();
+  o.sayName = function(){
+    console.log(name);
+  };
+  return o;
+}
+
+var person1 = person('kevin');
+
+person1.sayName(); // kevin
+
+person1.name = "daisy";
+
+person1.sayName(); // kevin
+
+console.log(person1.name); // daisy
+
+
 </script>
 </html>
