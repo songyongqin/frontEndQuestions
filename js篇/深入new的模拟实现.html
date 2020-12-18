@@ -11,16 +11,17 @@
     function Otaku (name, age) {
       
       this.age = age;
+      this.name = name
 
       // return {
       //   name: name,
       //   habit: 'Games'
       // }
-      return "123"
+      // return "123"
     }
     Otaku.prototype.length = 20
 
-    var person = new Otaku('Kevin', '18');
+    // var person = new Otaku('Kevin', '18');
 
     // console.log(person.name) // Kevin
     // console.log(person.habit) // Games
@@ -52,16 +53,17 @@
       // 第二版的代码
       function objectFactory() {
 
-        var obj = new Object(),
+        var obj = new Object();
 
         Constructor = [].shift.call(arguments);
 
         obj.__proto__ = Constructor.prototype;
 
+        console.log(arguments)
         var ret = Constructor.apply(obj, arguments);
-
+        // var ret = Constructor.apply(obj, ['jack',16]);
+        // var ret = Constructor.apply(obj, {0:'jack',1:16,length: 2});
         return typeof ret === 'object' ? ret : obj;
-
       };
 
       let obj = objectFactory(Otaku,'jack',16)

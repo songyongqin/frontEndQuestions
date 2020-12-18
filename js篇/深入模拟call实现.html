@@ -40,8 +40,11 @@ Function.prototype.call2 = function(context) {
   for(let i = 1; i < arguments.length; i++) {
     args.push(arguments[i])
   }
+
+
   // context.fn('jack',18);
   // args = ['jack',18]
+  // let args = [].splice.call(arguments,1)
   let res = context.fn(...args);
 
   delete context.fn;
