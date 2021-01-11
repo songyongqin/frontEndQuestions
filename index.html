@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>导航菜单</title>
+		<!-- <link rel="stylesheet" type="text/css" href="css/basic-grey.css"/>
+		<link rel="stylesheet" type="text/css" href="css/elegant-aero.css"/> -->
+		<style type="text/css">
+		*{margin:0; padding:0; font-size:14px;}
+		a{color:#333;text-decoration:none}
+		.nav{list-style:none; height:30px; border-bottom:10px solid #F60; margin-top:20px; padding-left:50px;}
+		.nav li{float:left}
+		.nav li a{display:block; height:30px;text-align:center; line-height:30px; width:80px; background:#efefef; margin-left:1px;}
+		.nav li a.on, .nav li a:hover{background:#F60;color:#fff; }
+		.table01{margin-top: 50px;}
+		.table02{width: 80%;}
+		.kcbt{}
+		
+		</style>
+	</head>
+	<body>
+		<ul class="nav">
+		    <li><a class="on" href="#">首　　页</a></li>
+		    <li><a href="#">关于我们</a></li>
+		    <li><a href="#">产品展示</a></li>
+		    <li><a href="#">售后服务</a></li>
+		    <li><a href="#">联系我们</a></li>
+		  </ul>
+		  <div class="table01"  align="center">
+		  	<table border="1" class="table02">
+		  	    <caption class="kcbt">课程表</caption>
+		  	    <tr>
+		  	        <th>&nbsp;</th>
+		  	        <th>星期一</th>
+		  	        <th>星期二</th>
+		  	        <th>星期三</th>
+		  	        <th>星期四</th>
+		  	        <th>星期五</th>
+		  	    </tr>
+		  	    <tr>
+		  	        <td>1</td>
+		  	        <td rowspan="2" bgcolor="wheat">大学英语</td>
+		  	        <td rowspan="2" bgcolor="yellow">操作系统</td>
+		  	        <td rowspan="2" bgcolor="chocolate">大型数据库</td>
+		  	        <td rowspan="2" bgcolor="cadetblue">毛泽东概论</td>
+		  	        <td rowspan="2">&nbsp;</td>
+		  	    </tr>
+		  	    <tr>
+		  	        <td>2</td>
+		  	    </tr>
+		  	    <tr>
+		  	        <td>3</td>
+		  	        <td rowspan="2">&nbsp;</td>
+		  	        <td rowspan="2" bgcolor="pink">计算机网络</td>
+		  	        <td rowspan="2" bgcolor="azure">体育IV</td>
+		  	        <td rowspan="2" bgcolor="wheat">大学英语</td>
+		  	        <td rowspan="2" bgcolor="chocolate">大型数据库</td>
+		  	    </tr>
+		  	    <tr>
+		  	        <td>4</td>
+		  	    </tr>
+		  	    <tr>
+		  	        <td>5</td>
+		  	        <td rowspan="2" bgcolor="orange">工程数学</td>
+		  	        <td rowspan="2" bgcolor="cadetblue">毛泽东概论</td>
+		  	        <td rowspan="2">&nbsp;</td>
+		  	        <td rowspan="2" bgcolor="yellow">操作系统</td>
+		  	        <td rowspan="2" bgcolor="pink">计算机网络</td>
+		  	    </tr>
+		  	    <tr>
+		  	        <td>6</td>
+		  	    </tr>
+		  	    <tr>
+		  	        <td>7</td>
+		  	        <td rowspan="2" bgcolor="salmon">云平台构建</td>
+		  	        <td rowspan="2">&nbsp;</td>
+		  	        <td rowspan="2" bgcolor="cyan">ASP.NET</td>
+		  	        <td rowspan="2">&nbsp;</td>
+		  	        <td rowspan="2" bgcolor="cyan">ASP.NET</td>
+		  	    </tr>
+		  	    <tr>
+		  	        <td>8</td>
+		  	    </tr>
+		  	</table>
+
+		  </div>
+		  <div id="box">
+		      <textarea id="text" cols="30" rows="10"></textarea>
+		      <button>留言</button>
+		  </div>
+		  
+	</body>
+	
+</html>
+<script type="text/javascript">
+		var box = document.querySelector('#box')
+		var text = document.querySelector('#text');
+		var btn = document.querySelector('button');
+		var ul = document.createElement('ul'); //动态生成ul标签
+		var cc = 0; //统计发了多少条留言
+		box.appendChild(ul)
+		btn.onclick = function(){
+				if(text.value.trim() === ''){ //去掉左右两边空格判断是否为空
+						alert('输入内容不能为空');
+						return;
+				}else{
+						cc++;
+						var li = document.createElement('li') 
+						var a = document.createElement('a')
+						a.href = 'javascript:;';
+						a.innerHTML = '删除';
+						li.innerHTML = text.value;
+						li.className = 'msg'; //添加类，超出部分变成省略号
+						li.appendChild(a)
+						a.onclick = function(){
+								ul.removeChild(this.parentNode)
+						}
+						var lis = document.getElementsByTagName("li");
+						if(cc === 1){
+								ul.appendChild(li)  //如果是第一次发布留言用appendChild
+						}else{
+								ul.insertBefore(li,lis[0]) //最新的留言总在第一条显示
+								// ul.insertBefore(li,ul.childNodes[0]) //最新的留言总在第一条显示
+						}
+						text.value = '' //发布成功后文本框内容清空
+						//留言数超过5条，删除最后一条留言
+						if(lis.length>5){
+								ul.removeChild(lis[lis.length-1])
+						}
+				}
+		}
+	</script>

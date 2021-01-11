@@ -4,34 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .test:hover { transform: rotateY(666turn); transition: all 59s cubic-bezier(.34,0,.84,1) 1s; }
+  </style>
 
 </head>
 <body>
-  <div id="a" style="width: 400px;height: 400px;background-color: rgb(165, 146, 146);">a
-    <div id="b" style="width: 300px;height: 300px;background-color: rgb(233, 76, 76);">b
-        <div id="c" style="width: 200px;height: 200px;background-color: rgb(185, 127, 127);">c
-          <div id="d" style="width: 100px;height: 100px;background-color: rgb(90, 81, 81);">d</div>
-        </div>
-    </div>
-  </div>
-
-<script>
-function Foo(){
-				getName = function(){
-					console.log(1);					
-				};
-				return this;
-			}
-
-			Foo.prototype.getName = function(){
-				console.log(3);
-			};
-
-			function getName(){
-				console.log(5);
-			};
-      Foo().getName()
-      // //3
-</script>
+  <div class="test" style="color: blue; width: 100px; height: 100px;background-color: red;">abc</div>
 </body>
+<script>
+  let a = 6; 
+  let b = 9;
+
+  let a = 6; 
+  let b = 9; 
+  function zipTag(strings, ...expressions) { 
+    //strings: ["","+","","=",""]
+    //expressions: [6,9,15]
+    return strings[0] + 
+    expressions.map((e, i) => `${e}${strings[i + 1]}`) 
+    .join(''); 
+  } 
+  let taggedResult = zipTag`${ a } + ${ b } = ${ a + b }`; 
+  console.log(taggedResult); // "6 + 9 = 15"
+
+</script>
+
+
+
 </html>

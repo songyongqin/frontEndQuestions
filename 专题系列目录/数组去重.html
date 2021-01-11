@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var array = [1, 1, '1', '1'];
+    // function unique(array) {
+    //   var res = [];
+    //   debugger
+    //   for (var i = 0, arrayLen = array.length; i < arrayLen; i++) {
+    //     for (var j = 0, resLen = res.length; j < resLen; j++ ) {
+    //       if (array[i] === res[j]) {
+    //         break;
+    //       }
+    //     }
+    //     // 如果array[i]是唯一的，那么执行完循环，j等于resLen
+    //     if (j === resLen) {
+    //       res.push(array[i])
+    //     }
+    //   }
+    //   return res;
+    // }
+    // console.log(unique(array)); // [1, "1"]
+
+
+
+    // function unique(array) {
+    //   var res = []
+    //   for(var i = 0; i< array.length; i++) {
+    //     for(var j = 0; j < res.length; j++) {
+    //       if(array[i] === res[j]) {
+    //         break;
+    //       }
+    //     }
+    //     if(j === res.length) {
+    //       res.push(array[i])
+    //     }
+    //   }
+    //   return res
+    // }
+    // console.log(unique(array));
+
+
+    var array = [1, 2, 1, 1, '1'];
+
+function unique(array) {
+    var res = array.filter(function(item, index, array){
+        return array.indexOf(item) === index;
+    })
+    return res;
+
+    
+}
+
+console.log(unique(array));
+  </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function isBigEnough(element) {
+      return element >= 15;
+    }
+
+    // console.log([12, 5, 8, 130, 44].lastIndexOf(isBigEnough));  // 3
+
+    // function findIndex(array,predicate,context) {
+    //   for(var i = 0; i< array.length; i++) {
+    //     if(predicate.call(context,array[i])) return i
+    //   }
+    // }
+    // function findLastIndex(array,predicate,context) {
+    //   for(var i = array.length - 1; i>=0;i--) {
+    //     if(predicate.call(context,array[i])) return i
+    //   }
+    // }
+
+    // console.log(findLastIndex([12, 5, 8, 130, 44],function(element){
+    //   if(element >= 15) {
+    //     return true
+    //   }
+    // }))
+
+    // 然而问题在于，findIndex 和 findLastIndex 其实有很多重复的部分，如何精简冗余的内容呢？这便是我们要学习的地方，日后面试问到此类问题，也是加分的选项。
+    // underscore 的思路就是利用传参的不同，返回不同的函数。这个自然是简单，但是如何根据参数的不同，在同一个循环中，实现正序和倒序遍历呢？
+    // 让我们直接模仿 underscore 的实现：
+
+    function createIndexFind(dir) {
+      return function(array,predicate,context) {
+        let len = array.length -1
+        let index = dir > 0 ? 0 : len
+        for(;index>=0 && index <= len;index+=dir) {
+          if(predicate.call(context,array[index])) return index
+        }
+      }
+    }
+    var findIndex = createIndexFind(1)
+    var findLastIndex = createIndexFind(-1)
+
+
+
+
+    // function findIndex(array, predicate, context) {
+    // for (var i = 0; i < array.length; i++) {
+    //     if (predicate.call(context, array[i], i, array)) return i;
+    // }
+    // return -1;
+    // }
+
+    console.log(findLastIndex([12, 5, 8, 130, 44], function(item, i, array){
+        if (item >= 15) return true;
+    })) // 2
+  </script>
+</body>
+</html>

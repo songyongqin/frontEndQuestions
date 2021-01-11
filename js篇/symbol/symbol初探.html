@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // let s1 = Symbol('foo'), 
+    // s2 = Symbol('bar'); 
+    // let o = { 
+    //   [s1]: 'foo val', 
+    //   [s2]: 'bar val', 
+    //   baz: 'baz val', 
+    //   qux: 'qux val' 
+    // };
+    // console.log(Object.getOwnPropertyDescriptors(o));
+    // console.log(Object.getOwnPropertyDescriptor(o));
+
+    // Symbol.hasInstance
+    // class Bar {} 
+    // class Baz extends Bar { 
+    //   static [Symbol.hasInstance]() { 
+    //     return false; 
+    //   } 
+    // } 
+    // let b = new Baz(); 
+    // console.log(Bar[Symbol.hasInstance](b)); // true 
+    // console.log(b instanceof Bar); // true 
+    // console.log(Baz[Symbol.hasInstance](b)); // false 
+    // console.log(b instanceof Baz); // false
+
+
+    // Symbol.isConcatSpreadable
+    //根据 ECMAScript 规范，这个符号作为一个属性表示“一个布尔值，如果是 true，则意味着对象应
+    // 该用 Array.prototype.concat()打平其数组元素”。ES6 中的 Array.prototype.concat()方法会
+    // 根据接收到的对象类型选择如何将一个类数组对象拼接成数组实例。覆盖 Symbol.isConcatSpreadable 的值可以修改这个行为。
+    // 数组对象默认情况下会被打平到已有的数组，false 或假值会导致整个对象被追加到数组末尾。类
+    // 数组对象默认情况下会被追加到数组末尾，true 或真值会导致这个类数组对象被打平到数组实例。其
+    // 他不是类数组对象的对象在 Symbol.isConcatSpreadable 被设置为 true 的情况下将被忽略。
+    // let initial = ['foo']; 
+    // let array = ['bar']; 
+    // console.log(array[Symbol.isConcatSpreadable]); // undefined 
+    // console.log(initial.concat(array)); // ['foo', 'bar'] 
+    // array[Symbol.isConcatSpreadable] = false; 
+    // console.log(initial.concat(array)); // ['foo', Array(1)] 
+    // let arrayLikeObject = { length: 1, 0: 'baz' }; 
+    // console.log(arrayLikeObject[Symbol.isConcatSpreadable]); // undefined 
+    // console.log(initial.concat(arrayLikeObject)); // ['foo', {...}] 
+    // arrayLikeObject[Symbol.isConcatSpreadable] = true; 
+    // console.log(initial.concat(arrayLikeObject)); // ['foo', 'baz'] 
+    // let otherObject = new Set().add('qux'); 
+    // console.log(otherObject[Symbol.isConcatSpreadable]); // undefined 
+    // console.log(initial.concat(otherObject)); // ['foo', Set(1)] 
+    // otherObject[Symbol.isConcatSpreadable] = true; 
+    // console.log(initial.concat(otherObject)); // ['foo']
+
+    //Symbol.iterator
+    // class Emitter { 
+    //   constructor(max) { 
+    //     this.max = max; 
+    //     this.idx = 0; 
+    //   } 
+    //   *[Symbol.iterator]() { 
+    //     while(this.idx < this.max) { 
+    //       yield this.idx++; 
+    //     } 
+    //   } 
+    // } 
+    // function count() { 
+    //   let emitter = new Emitter(5); 
+    //   for (const x of emitter) { 
+    //     console.log(x); 
+    //   } 
+    // } 
+    // count();
+
+    //Symbol.replace
+    // class FooReplacer { 
+    //   static [Symbol.replace](target, replacement) { 
+    //     console.log(target.split('foo'))
+    //     return target.split('foo').join(replacement); 
+    //   } 
+    // } 
+    // console.log('barfoobaz'.replace(FooReplacer, 'qux')); 
+    // "barquxbaz"
+
+
+    //Symbol.split
+    // class FooSplitter { 
+    //   static [Symbol.split](target) {
+    //     return target.split('foo'); 
+    //   } 
+    // } 
+    // console.log('barfoobaz'.split(FooSplitter)); 
+    // // ["bar", "baz"]
+
+    // class StringSplitter { 
+    //   constructor(str) { 
+    //     this.str = str; 
+    //   } 
+    //   [Symbol.split](target) { 
+    //     return target.split(this.str); 
+    //   } 
+    // } 
+    // console.log('barfoobaz'.split(new StringSplitter('foo'))); 
+    // ["bar", "baz"]
+
+
+
+    //Symbol.toPrimitive
+    class Bar { 
+      constructor() { 
+        this[Symbol.toPrimitive] = function(hint) { 
+          console.log(hint)
+          switch (hint) { 
+            case 'number': 
+            return 3; 
+            case 'string': 
+            return 'string bar'; 
+            case 'default': 
+            default: 
+            return 'default bar'; 
+          } 
+        } 
+      } 
+    }
+
+    let bar = new Bar(); 
+    // console.log(3+bar); // "3default bar" 
+    console.log('a' + String(bar)); // 0 
+    // console.log(String(bar)); // "string bar"
+  </script>
+</body>
+</html>

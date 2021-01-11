@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let obj = {
+      a:12,
+      f:[1,{a:3}],
+      b:{
+        b1: 'name',
+        b2:'good'
+      }
+    }
+    // var deepCopy = function(obj) {
+    //   if (typeof obj !== 'object') return;
+    //   var newObj = obj instanceof Array ? [] : {};
+    //   for (var key in obj) {
+    //     if (obj.hasOwnProperty(key)) {
+    //       newObj[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
+    //     }
+    //   }
+    //   return newObj;
+    // }
+    // let newobj = deepCopy(obj)
+    // console.log(newobj)
+
+    // var deepCopy = function(obj) {
+    //   if(typeof obj !== "object") {
+    //     return
+    //   }
+    //   var newObj = obj instanceof Array ? [] : {}
+    //   for(let key in obj) {
+    //     if(obj.hasOwnProperty(key)) {
+    //       newObj[key] = typeof obj[key] === "object" ? deepCopy(obj[key]): obj[key]
+    //     }
+    //   }
+    //   return newObj
+    // }
+    // let newobj = deepCopy(obj)
+    // console.log(newobj)
+
+    function deepClone(obj) {
+      if(typeof obj !== "object") {
+        return
+      }
+      var newObj = obj instanceof Array ? [] : {}
+      for(var key in obj) {
+        if(obj.hasOwnProperty(key)) {
+          newObj[key] =  typeof obj[key] === "object" ? deepClone(obj[key]) : obj[key]
+        }
+        
+      }
+    }
+
+    console.log(deepClone(obj))    
+  </script>
+</body>
+</html>
