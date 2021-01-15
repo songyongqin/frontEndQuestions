@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    function Father() {
+      this.hobby = "smoke"
+    }
+    Father.prototype.cook = "eggs"
+    let father = new Father()
+
+    Sun.prototype = new Father()
+
+    function Sun() {
+      this.age = 20
+      this.name = "john"
+    }
+    let sun = new Sun()
+    for(let prop in sun) {
+      if(sun.hasOwnProperty( prop)) {
+        console.log(prop)
+      }
+    }
+    let names = Object.getOwnPropertyNames( sun)
+    console.log(Sun.prototype.isPrototypeOf (sun) )
+    console.log(sun instanceof Sun)
+    console.log(sun.toString())
+    console.log(sun.toLocaleString())
+  </script>
+</body>
+</html>

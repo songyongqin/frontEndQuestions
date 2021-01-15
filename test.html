@@ -13,20 +13,18 @@
   <div class="test" style="color: blue; width: 100px; height: 100px;background-color: red;">abc</div>
 </body>
 <script>
-  let a = 6; 
-  let b = 9;
+  let obj = {
+    hobby: [
+      2,3
+    ],
+    name: 'jack'
+  }
 
-  let a = 6; 
-  let b = 9; 
-  function zipTag(strings, ...expressions) { 
-    //strings: ["","+","","=",""]
-    //expressions: [6,9,15]
-    return strings[0] + 
-    expressions.map((e, i) => `${e}${strings[i + 1]}`) 
-    .join(''); 
-  } 
-  let taggedResult = zipTag`${ a } + ${ b } = ${ a + b }`; 
-  console.log(taggedResult); // "6 + 9 = 15"
+  // let obj2 = {...obj}
+  let obj2 = Object.assign({},obj)
+  obj2.hobby[0] = 9
+  console.log(obj)
+  console.log(obj2)
 
 </script>
 
