@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // const target = { 
+    //   id: 'target' 
+    // }; 
+    // const handler = {}; 
+    // const proxy = new Proxy(target, handler);
+    // console.log(proxy, Proxy)
+
+    //捕获器参数和反射api
+    // const target = {
+    //   foo: "bar"
+    // }
+    // const handle = {
+    //   get(trapTarget, property, receiver){
+    //     // console.log(trapTarget === target)
+    //     // console.log(property)
+    //     // console.log(receiver === proxy)
+    //     // return trapTarget[property]
+
+    //     return Reflect.get
+    //   }
+    // }
+    // let proxy = new Proxy(target, handle)
+    // console.log(proxy.foo)
+
+    // let proxy = new Proxy(target, Reflect)
+
+    // const wm = new WeakMap();
+    // class User {
+    //   constructor(userId) {
+    //     wm.set(this, userId);
+    //   }
+    //   set id(userId) {
+    //     wm.set(this, userId);
+    //   }
+    //   get id() {
+    //     return wm.get(this);
+    //   }
+    // }
+    // const user = new User(123);
+    // console.log(wm)
+    // console.log(user.id); // 123 
+    // const userInstanceProxy = new Proxy(user, {});
+    // console.log(userInstanceProxy.id); // undefined
+
+    // const myTarget = {};
+    // const proxy = new Proxy(myTarget, {
+    //   ownKeys(target) {
+    //     console.log('ownKeys()');
+    //     return Reflect.ownKeys(...arguments)
+    //   }
+    // });
+    // Object.keys(proxy);
+    // ownKeys()
+
+    const userList = [];
+    function emit(newValue) {
+      console.log(newValue);
+    }
+    const proxy = new Proxy(userList, {
+      set(target, property, value, receiver) {
+        const result = Reflect.set(...arguments);
+        if (result) {
+          emit(Reflect.get(target, property, receiver));
+        }
+        return result;
+      }
+    });
+    proxy.push('John');
+    // John 
+    proxy.push('Jacob');
+    // Jacob
+
+//     代理是 ECMAScript 6 新增的令人兴奋和动态十足的新特性。尽管不支持向后兼容，但它开辟出了
+// 一片前所未有的 JavaScript 元编程及抽象的新天地。
+// 从宏观上看，代理是真实 JavaScript 对象的透明抽象层。代理可以定义包含捕获器的处理程序对象，
+// 而这些捕获器可以拦截绝大部分 JavaScript 的基本操作和方法。在这个捕获器处理程序中，可以修改任
+// 何基本操作的行为，当然前提是遵从捕获器不变式。
+// 与代理如影随形的反射 API，则封装了一整套与捕获器拦截的操作相对应的方法。可以把反射 API
+// 看作一套基本操作，这些操作是绝大部分 JavaScript 对象 API 的基础。
+// 代理的应用场景是不可限量的。开发者使用它可以创建出各种编码模式，比如（但远远不限于）跟
+// 踪属性访问、隐藏属性、阻止修改或删除属性、函数参数验证、构造函数参数验证、数据绑定，以及可
+// 观察对象。
+
+
+  </script>
+</body>
+
+</html>

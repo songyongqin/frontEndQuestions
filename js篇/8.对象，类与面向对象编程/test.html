@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // let person = {
+    //   age:20,
+    //   hobby:'climb'
+    // }
+    // Object.defineProperty(person,'name',{
+    //   writable:false,
+    //   value:'aa',
+    //   enumerable: true
+    // })
+    // console.log(person)
+    // delete person.name
+    // console.log(person)
+
+    // for(let prop in person) {
+    //   console.log(person[prop])
+    // }
+    // let des = Object.getOwnPropertyDescriptor(person,'age')
+    // console.log(des.configurable)
+
+
+    /** 
+     * 获取函数与设置函数
+     */
+    // dest = { 
+    //   set a(val) { 
+    //     console.log(`Invoked dest setter with param ${val}`); 
+    //   } 
+    // }; 
+    // src = { 
+    //   get a() { 
+    //     console.log('Invoked src getter'); 
+    //     return 'foo'; 
+    //   } 
+    // }; 
+    // ECMAScript 6 专门为合并对象提供了 Object.assign()方法。这个方法接收一个目标对象和一个
+    // 或多个源对象作为参数，然后将每个源对象中可枚举（Object.propertyIsEnumerable()返回 true）
+    // 和自有（Object.hasOwnProperty()返回 true）属性复制到目标对象。以字符串和符号为键的属性
+    // 会被复制。对每个符合条件的属性，这个方法会使用源对象上的[[Get]]取得属性的值，然后使用目标
+    // 对象上的[[Set]]设置属性的值。
+    // Object.assign(dest, src); 
+    // 调用 src 的获取方法
+    // 调用 dest 的设置方法并传入参数"foo" 
+    // 因为这里的设置函数不执行赋值操作
+    // 所以实际上并没有把值转移过来
+    // console.log(dest); // { set a(val) {...} }
+
+
+    // let biped = { 
+    //   numLegs: 2 
+    // }; 
+    // let person = Object.create(biped); 
+    // person.name = 'Matt'; 
+    // console.log(person.name); // Matt 
+    // console.log(person.numLegs); // 2 
+    // console.log(Object.getPrototypeOf(person) === biped); // true
+    // console.log(person)
+
+    // function Person(){
+    //   this.name = "Nicholas",
+    //   this.age = 10
+    // }
+    // function Person(){}
+    // Person.prototype = { 
+    // constructor: Person, //增加构造函数，如此添加该属性 会使其 enumerable 由false变为true
+    //   name: "Nicholas", 
+    //   age: 29, 
+    //   job: "Software Engineer", 
+    //   sayName() { 
+    //     console.log(this.name); 
+    //   } 
+    // };
+    // Object.defineProperty(Person.prototype,"constructor",{
+    //   enumerable: false,
+    //   value: Person
+    // })
+    // let person = new Person()
+    // Person.prototype.sayAge = () => {
+    //   console.log(10)
+    // }
+    // person.sayAge()
+
+    // for(let prop in person) {
+    //   console.log(prop)
+    // }
+
+    //工厂模式：
+    // function createPerson(name, age, job) { 
+    //   let o = new Object(); 
+    //   o.name = name; 
+    //   o.age = age; 
+    //   o.job = job; 
+    //   o.sayName = function() { 
+    //     console.log(this.name); 
+    //   }; 
+    //   return o; 
+    // } 
+    // let person1 = createPerson("Nicholas", 29, "Software Engineer"); 
+    // let person2 = createPerson("Greg", 27, "Doctor");
+
+    // let biped = { 
+    //   numLegs: 2 
+    // }; 
+
+    // let person = Object.create(biped); 
+    // person.name = 'Matt'; 
+    // console.log(person.name); // Matt 
+    // console.log(person.numLegs); // 2 
+    // console.log(person); 
+    // console.log(Object.getPrototypeOf(person) === biped); // true
+
+    // function Person() {}
+    // Person.prototype.age = 10
+    // let person = new Person()
+    // person.name = "jack"
+    // function hasPrototypeProperty(object, name){ 
+    //   return (name in object) && !object.hasOwnProperty(name); 
+    // }
+
+    // console.log(hasPrototypeProperty(person,'name'))
+
+    // function SuperType() { 
+    // this.property = true; 
+    // } 
+    // SuperType.prototype.getSuperValue = function() { 
+    // return true; 
+    // }; 
+    // function SubType() { 
+    // this.subproperty = false; 
+    // } 
+    // // 继承 SuperType 
+    // SubType.prototype = new SuperType(); 
+    // // 新方法
+    // SubType.prototype.getSubValue = function () { 
+    // return this.subproperty; 
+    // }; 
+    // // 覆盖已有的方法
+    // SubType.prototype.getSuperValue = function () { 
+    // return false; 
+    // }; 
+    // let instance = new SubType(); 
+    // console.log(instance)
+
+
+
+    // class Person {}
+    // let p = new Person()
+    // console.log(p.constructor())
+    // let p =  {
+
+    //   set name (value) {
+    //     this.name = value
+    //     console.log(value,this)
+
+    //   },
+    //   get name() {
+    //     // return this.name
+    //   }
+    // }
+    // p.name = 'aa'
+    // console.log(p.name)
+
+    // class Person { 
+    //   constructor(age) { 
+    //     this.age_ = age; 
+    //   } 
+    //   sayAge() { 
+    //     console.log(this.age_); 
+    //   } 
+    //   static create() { 
+    //     // 使用随机年龄创建并返回一个 Person 实例
+    //     return new Person(Math.floor(Math.random()*100)); 
+    //   } 
+    // } 
+
+    // console.log(Person.create()); // Person { age_: ... }
+
+    // class Person {
+    //   constructor() {
+    //     this.names = ['jack','lily','john']
+    //   }
+
+    //   *[Symbol.iterator]() {
+    //     yield *this.names.entries()
+    //   }
+
+    // }
+
+    // let p = new Person()
+    // for(let prop of p) {
+    //   console.log(prop)
+    // }
+
+    class Vehicle {
+      constructor() {
+        this.hasEngine = true;
+      }
+    }
+    class Bus extends Vehicle {
+      constructor() {
+        // 不要在调用 super()之前引用 this，否则会抛出 ReferenceError 
+        super(); // 相当于 super.constructor() 
+        console.log(this instanceof Vehicle); // true 
+        console.log(this); // Bus { hasEngine: true } 
+      }
+    }
+    new Bus();
+
+
+  </script>
+</body>
+
+</html>

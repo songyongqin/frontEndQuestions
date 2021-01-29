@@ -51,22 +51,35 @@
 
 
       // 第二版的代码
-      function objectFactory() {
+      // function objectFactory() {
 
-        var obj = new Object();
+      //   var obj = new Object();
 
-        Constructor = [].shift.call(arguments);
+      //   Constructor = [].shift.call(arguments);
 
-        obj.__proto__ = Constructor.prototype;
+      //   obj.__proto__ = Constructor.prototype;
 
-        console.log(arguments)
-        var ret = Constructor.apply(obj, arguments);
-        // var ret = Constructor.apply(obj, ['jack',16]);
-        // var ret = Constructor.apply(obj, {0:'jack',1:16,length: 2});
-        return typeof ret === 'object' ? ret : obj;
-      };
+      //   console.log(arguments)
+      //   var ret = Constructor.apply(obj, arguments);
+      //   // var ret = Constructor.apply(obj, ['jack',16]);
+      //   // var ret = Constructor.apply(obj, {0:'jack',1:16,length: 2});
+      //   return typeof ret === 'object' ? ret : obj;
+      // };
 
-      let obj = objectFactory(Otaku,'jack',16)
+      // let obj = objectFactory(Otaku,'jack',16)
+      // console.log(obj)
+
+      function clone () {
+        let obj = {}
+        // let Constructor = [].splice.call(arguments,0,1)[0]
+        let Constructor = [].shift.call(arguments)
+
+
+        let res = Constructor.apply(obj,arguments)
+        obj.__proto__ = Constructor.prototype
+        return typeof res === 'object' ? ret : obj;
+      }
+      let obj = clone(Otaku,'jack',16)
       console.log(obj)
 
 
