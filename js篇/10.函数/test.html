@@ -1,16 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <script>
-    let double = (x) => { 
-      return 2 * x; 
+    // let double = (x) => { 
+    //   return 2 * x; 
+    // };
+    // double(2);
+
+
+    // let person = {
+    //   name: 'jack'
+    // }
+    // function foo() { }
+    // console.log(foo.bind(person).name); // bound foo
+
+
+    // function foo() { }
+    // console.log(foo.bind(null).name); // bound foo 
+
+
+    // let dog = {
+    //   years: 1,
+    //   get age() {
+    //     return this.years;
+    //   },
+    //   set age(newAge) {
+    //     this.years = newAge;
+    //   }
+    // }
+    // let propertyDescriptor = Object.getOwnPropertyDescriptor(dog, 'age');
+    // console.log(propertyDescriptor)
+    // console.log(propertyDescriptor.get.name); // get age 
+    // console.log(propertyDescriptor.set.name); // set age
+
+    // "use strict"
+
+    // function doAdd(num1, num2) {
+    //   arguments[1] = 1;
+    //   console.log(num2,arguments)
+    //   console.log(arguments[0] + num2);
+    // }
+    // doAdd(5, 10)
+
+
+    // function add(a,...b) {
+    //   console.log(a,b)
+    // }
+    // add(1,2,3,4)
+
+
+    // function factorial(num) {
+    //   if (num <= 1) {
+    //     return 1;
+    //   } else {
+    //     return num * factorial(num - 1);
+    //   }
+    // }
+    // let trueFactorial = factorial;
+    // factorial = function () {
+    //   return 0;
+    // };
+    // console.log(trueFactorial(5)); // 120 
+    // console.log(factorial(5)); // 0
+
+
+    // var name  = 'lily'
+    // function Queen() {
+    //   this.name = 'jack';
+    // let bb = () => {console.log(this.name)}
+    //   function bb() {
+    //     console.log(this.name)
+    //   }
+    //   bb()
+    // }
+
+    // let obj = {
+    //   name:'john',
+    //   queen:Queen
+    // }
+    // Queen()
+    // new Queen(); 
+
+    // console.log(this.name)
+
+
+    // function outer() {
+    //   inner();
+    // }
+    // function inner() {
+    //   console.log(arguments);
+    // }
+    // outer();
+
+
+    let factorial = function(num) {
+      if (num <= 1) {
+        return 1;
+      } else {
+        // return num * factorial(num - 1);
+        return 3;
+      }
     };
-    double(2);
+    let anotherFactorial = factorial;
+    factorial = null;
+    console.log(anotherFactorial(4)); // 报错
   </script>
 </body>
+
 </html>
