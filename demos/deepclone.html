@@ -52,10 +52,9 @@
         if(obj.hasOwnProperty(key)) {
           newObj[key] =  typeof obj[key] === "object" ? deepClone(obj[key]) : obj[key]
         }
-        
       }
+      return newObj
     }
-
     console.log(deepClone(obj))    
   </script>
 </body>

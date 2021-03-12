@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  let arr = [3,2,0,1,9,8,6,4,7,5]
+  function selectSort(arr) {
+    for(let i = 1; i < arr.length; i++) {
+      let maxValue = arr[i -1]
+      let maxIndex = i -1
+      for(let j = i;j < arr.length; j++) {
+        if(maxValue < arr[j]) {
+          maxValue = arr[j]
+          maxIndex = j
+        }
+      }
+      arr[maxIndex] = arr[i-1]
+      arr[i-1] = maxValue
+    }
+  }
+
+  selectSort(arr)
+
+</script>
+</html>

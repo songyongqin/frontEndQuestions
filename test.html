@@ -1,21 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    .test:hover { transform: rotateY(666turn); transition: all 59s cubic-bezier(.34,0,.84,1) 1s; }
+    #box {
+      width: 10px;
+      height: 10px;
+      background-color: blue;
+      transform: scaleX(0.5);
+    }
   </style>
 
 </head>
+
 <body>
-  <div class="test" style="color: blue; width: 100px; height: 100px;background-color: red;">abc</div>
+  <div id="box"></div>
 </body>
 <script>
-let arr = [{name:'jacak',age:23},{name: 'aa',age:2}]
-let res =  arr.filter((el) => el.name === "")
-console.log(res)
+//如何实现new
+
+function Otacu(name){
+  this.name = name
+}
+Otacu.prototype.age = 10
+
+// let p1 = new Otacu('jack')
+// console.log(p1)
+
+
+function newObj() {
+  let Constructor =  [].shift.call(arguments)
+  let obj = {}
+  let result = Constructor.apply(obj,arguments)
+
+  var F = function(){}
+  F.prototype = Constructor.prototype
+  // console.log(fn)
+  // obj.prototype = new fn()
+  obj.__proto__ = new F()
+  return typeof result === "object" ? result : obj
+
+}
+
+
+
+console.log(newObj(Otacu,'jack'))
 </script>
 
 

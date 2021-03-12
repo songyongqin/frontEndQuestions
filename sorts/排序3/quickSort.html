@@ -8,7 +8,8 @@
 
 <body>
 <script>
-  let arr = [3,2,0,1,5,6,5,9,8,7]
+  // let arr = [3,2,0,1,5,6,5,9,8,7]
+  let arr = [1,4,6,3,5,2]
   function quickSort(arr, left, right) {
     let l = left 
     let r = right
@@ -50,9 +51,6 @@
     if(r > left) {
       quickSort(arr,left,r)
     }
-
-
-
   }
   quickSort(arr, 0, arr.length-1)
   console.log(arr)
