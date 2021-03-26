@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+
+    class LazyManClass {
+      constructor(name) {
+        console.log('Man')
+        this.name = name
+        this.tarskList = []
+        setTimeout(() => {
+          this.next()
+        }, 0);
+      }
+      eat(name) {
+        let task =  () => {
+          console.log(`i am eating ${name}...`)
+          this.next()
+        };
+        this.tarskList.push(task)
+        return this
+      }
+      sleepFirst(num) {
+        let task = ()=> {
+          setTimeout(() => {
+            console.log(`等待了${num}秒...`)
+            this.next()
+          }, num * 1000);
+        }
+        this.tarskList.unshift(task)
+        return this
+      }
+      sleep(num) {
+        let task =  ()=> {
+          setTimeout(() => {
+            console.log(`等待了${num}秒...`)
+            this.next()
+          }, num * 1000);
+        }
+        this.tarskList.push(task)
+        return this
+      }
+      next() {
+        var fn = this.tarskList.shift();
+        fn && fn();
+      }
+    }
+    function LazyMan() {
+      return new LazyManClass();
+    }
+    // LazyMan('Tony').eat('lunch')
+    LazyMan('Tony').eat('lunch').eat('dinner').sleepFirst(5).sleep(4).eat('junk food')
+  
+  
+  
+  </script>
+</body>
+</html>

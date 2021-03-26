@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#box {
+			width: 100px;
+			height: 2000px;
+			background-color: blue;
+			/* transform: scaleX(0.5); */
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="box"></div>
+	
+	 <button onclick="remove()">去除监听</button>
+</body>
+<script>
+function clickHandel () {
+ // 要求打印 userInfo 的 参数内容
+ console.log(`用户名：${''}, 用户ID：${''}`)
+}
+const test = {
+ addListener (userInfo) {
+  window.addEventListener('scroll', clickHandel, false)
+ },
+ removeListener () {
+  window.addEventListener('scroll', clickHandel, false)
+ }
+}
+test.addListener()
+
+
+
+
+</script>
+
+
+
+</html>

@@ -6,50 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    #box {
-      width: 10px;
-      height: 10px;
-      background-color: blue;
-      transform: scaleX(0.5);
-    }
   </style>
-
 </head>
 
 <body>
-  <div id="box"></div>
+  <div style="height: 3000px;"></div>
+  <button onclick="remove()">去除监听</button>
 </body>
 <script>
-//如何实现new
 
-function Otacu(name){
-  this.name = name
-}
-Otacu.prototype.age = 10
+  let fn
+  function remove(){
+    console.log('re')
+    window.removeEventListener('scroll', fn, false)
+  }
+  function clickHandel(arg,arg2) {
+    console.log(1,arg,arg2)
+  }
+  (
+    function () {
+      const userInfo = { id: 123, name: '测试' }
+      // fn = e =>clickHandel(e,userInfo)
+      function fn(e){
+        clickHandel(e,userInfo)
+      }
+      window.addEventListener('scroll',fn, false)
+    }()
 
-// let p1 = new Otacu('jack')
-// console.log(p1)
-
-
-function newObj() {
-  let Constructor =  [].shift.call(arguments)
-  let obj = {}
-  let result = Constructor.apply(obj,arguments)
-
-  var F = function(){}
-  F.prototype = Constructor.prototype
-  // console.log(fn)
-  // obj.prototype = new fn()
-  obj.__proto__ = new F()
-  return typeof result === "object" ? result : obj
-
-}
-
-
-
-console.log(newObj(Otacu,'jack'))
+  )
 </script>
-
-
 
 </html>

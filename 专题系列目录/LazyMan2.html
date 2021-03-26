@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+      /* transform: scaleX(0.5); */
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="box"></div>
+</body>
+<script>
+  class LazyMan {
+    __tasks = []
+    constructor(name) {
+      console.log(`Hi This is ${name}!`)
+      // 开始任务
+      setTimeout(async () => {
+        for (const task of this.__tasks) {
+          await task()
+        }
+      }, 0)
+    }
+
+    eat(food) {
+      this.__tasks.push(async () => console.log(`Eat ${food}~`))
+      return this
+    }
+
+    sleep(time) {
+      this.__tasks.push(async () => {
+      	await new Promise(resolve => setTimeout(() => {
+      		resolve(console.log(`Wake up after ${time}`))
+      	}, time))
+      })
+      return this
+    }
+
+    sleepFirst(time) {
+      this.__tasks.unshift( async () => {
+          await new Promise(resolve => setTimeout(() => {
+            resolve(console.log(`Wake up after ${time}`))
+          }, time))
+        })
+      return this
+    }
+  }
+  new LazyMan('Cai').eat('香蕉2').sleepFirst(3000).eat('香蕉').sleep(1000).eat('苹果')
+  // new LazyMan('Cai').eat('香蕉').sleepFirst(10)
+  //   .eat('香蕉').sleep(20)
+  //   .eat('大白兔').sleep(0)
+  //   .eat('苹果').sleep(5)
+  //   .eat('火龙果')
+</script>
+
+</html>

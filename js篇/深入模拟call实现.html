@@ -41,11 +41,18 @@ Function.prototype.call2 = function(context) {
     args.push(arguments[i])
   }
 
-
   // context.fn('jack',18);
   // args = ['jack',18]
   // let args = [].splice.call(arguments,1)
+
+  // args = [].slice.call(arguments,1)
+  // let arg2 = [...arguments]
+  // console.log(args)
+  // console.log(arg2)
+
+// console.log(arguments)
   let res = context.fn(...args);
+  
 
   delete context.fn;
   return res 
@@ -56,7 +63,6 @@ var foo = {
 };
 
 function bar(name,age) {
-  console.log(name, age, this.value)
   return {
     age:15,
     name:'jj'

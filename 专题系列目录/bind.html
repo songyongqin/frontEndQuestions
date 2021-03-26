@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let obj = {
+      vlaue: 1
+    }
+    function bar(name,age) {
+      console.log(this.vlaue,name,age)
+    }
+
+    bar.prototype={
+      hobby: 'climb'
+    }
+
+    // let sayBar = bar.bind(obj)
+
+
+    // let person = new sayBar('jack',18)
+
+
+
+
+    Function.prototype.bind2 = function (context) {
+      let self = this
+      let args = [].splice.call(arguments,1)
+      function fbound() {}
+      fbound.prototype = self.prototype
+      let fn =  function() {
+        let sonArgs = [].slice.call(arguments)
+        self.apply(   this instanceof fbound ? fn : context ,args.concat(sonArgs))
+      }
+      fn.prototype = new fbound()
+      return fn
+    }
+
+
+
+    let sayBar = bar.bind2(obj,'jack')
+    // sayBar(15)
+    let person = new sayBar(15)
+
+  </script>
+</body>
+</html>

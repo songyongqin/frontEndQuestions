@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    //浅拷贝
+    function shallowCopy(object) {
+      if(!object || typeof object !== "object") {
+        return
+      }
+      
+      let newObj = Array.isArray(object) ? [] : {}
+
+      for(let prop in object) {
+        if(object.hasOwnProperty(prop)) {
+          newObj[prop] = object[prop]
+        }
+      }
+
+      return newObj
+
+    }
+
+    //深拷贝
+    function deepClone(object) {
+      if(!object || typeof object !== "object") {
+        return
+      }
+      let newObj = Array.isArray(object) ? [] : {}
+      for(let prop in object) {
+        if(object.hasOwnProperty(prop)) {
+          newObj[prop] = typeof object[prop] === "object" ? deepClone(object[prop]) : object[prop]
+        }
+      }
+      return newObj
+    }
+
+
+    let obj = {
+      a:1,
+      b:[1,2,3]
+    }
+    let newobj = deepClone(obj)
+
+    let obj2 = Object.assign(obj)
+
+
+
+
+  </script>
+</body>
+</html>
