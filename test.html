@@ -6,34 +6,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #test {
+      position: absolute;
+      background-color: red;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      height: 80%;
+    }
   </style>
 </head>
 
 <body>
-  <div style="height: 3000px;"></div>
-  <button onclick="remove()">去除监听</button>
+  <div id="test"></div>
 </body>
 <script>
 
-  let fn
-  function remove(){
-    console.log('re')
-    window.removeEventListener('scroll', fn, false)
-  }
-  function clickHandel(arg,arg2) {
-    console.log(1,arg,arg2)
-  }
-  (
-    function () {
-      const userInfo = { id: 123, name: '测试' }
-      // fn = e =>clickHandel(e,userInfo)
-      function fn(e){
-        clickHandel(e,userInfo)
-      }
-      window.addEventListener('scroll',fn, false)
-    }()
+  // const promise1 = new Promise( (resolve, reject) => { reject()});
+  // const promise2 = promise1.then(
+  //   null,
+  //   function () {
+  //     return 123;
+  //   }
+  // );
+  // promise2.then(
+  //   () => {
+  //     console.log("promise2已完成")
+  //   },
+  //   () => {
+  //     console.log("promise2已拒绝")
+  //   },
+  // )
 
-  )
+  // const promise1 = new Promise( (resolve, reject) => { reject()});
+  // const promise2 = promise1.then(
+  //   function() {
+  //     return 234
+  //   },
+  //   function () {
+  //     return 123;
+  //   }
+  // );
+  // promise2.then(
+  //   (res) => {
+  //     console.log("promise2已完成" + res)
+  //   },
+  //   (res) => {
+  //     console.log("promise2已拒绝" + res)
+  //   },
+  // )
+
+  // function Person(name, age) {
+  //   this.name = name;
+  //   this.age = age;
+  //   console.log(this)
+  // }
+  
+  // console.log(new Person('jack', 18))
+  // console.log( Person('jack', 18))
+    let a =function() {}
+    let b = []
+    let d = null
+    let c = {}
+    let e = undefined
+    console.log(typeof a)
+    console.log(typeof b)
+    console.log(typeof c)
+    console.log(typeof d)
+    console.log(typeof e)
+    console.log(aa)
+    console.log(bb)
+    function jack(box) {
+      
+    }
+    // console.log(a)
+
 </script>
 
 </html>
